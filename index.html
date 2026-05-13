@@ -3,1291 +3,754 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>G's Gourmet Burgers — Personalised burgers, steaks &amp; much more · Luton</title>
-<meta name="description" content="G's Gourmet Burgers, 13 Wellington Street, Luton LU1 2QH. Halal gourmet burgers, fine steaks, hand-cut chips and made-to-order plates. Call 01582 965595.">
+<title>G's Gourmet Burger — Personalised burgers, steaks &amp; much more · Wellington Street, Luton</title>
+<meta name="description" content="Personalised burgers, char-grilled steaks, lamb chops, milkshakes and platters — made-to-order, halal, on Wellington Street in Luton. Call 01582 965595.">
+<meta name="theme-color" content="#0E0E0C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #F4E4BC;
-    --paper-light: #FAF3E0;
-    --ink: #1A0F0F;
-    --ink-soft: #4A3636;
-    --wine: #8B3A3A;
-    --wine-deep: #5E2424;
-    --mustard: #D89B3C;
-    --font-display: "Big Shoulders Display", "Impact", "Oswald", sans-serif;
-    --font-body: "Lora", Georgia, "Times New Roman", serif;
+    --ink:        #0E0E0C;
+    --ink-soft:   #232220;
+    --paper:      #FCFAF4;
+    --paper-edge: #F1ECDE;
+    --oat:        #E9D5A1;
+    --tap:        #C75B12;
+    --tap-deep:   #8E3E08;
+    --rule:       #1A1814;
+
+    --display: "Bebas Neue", "Oswald", Impact, sans-serif;
+    --body:    "Manrope", system-ui, -apple-system, sans-serif;
+
+    --gutter:  clamp(1.1rem, 3vw, 2.4rem);
+    --maxw:    78rem;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
   body {
     background: var(--paper);
     color: var(--ink);
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 0.85rem + 0.4vw, 1.13rem);
+    font-family: var(--body);
+    font-size: clamp(1rem, 0.92rem + 0.25vw, 1.075rem);
     line-height: 1.55;
     text-wrap: pretty;
-    hyphens: auto;
     min-height: 100vh;
     overflow-x: hidden;
   }
+
+  /* paper grain — kills digital flatness */
   body::before {
     content: "";
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.10 0 0 0 0 0.06 0 0 0 0 0.06 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-    pointer-events: none;
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background-image:
+      radial-gradient(rgba(20,15,8,0.06) 1px, transparent 1px),
+      radial-gradient(rgba(199,91,18,0.04) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+    background-position: 0 0, 1px 2px;
     mix-blend-mode: multiply;
-    opacity: 0.22;
-    z-index: 1;
+    opacity: 0.55;
   }
-  header, main, footer { position: relative; z-index: 2; }
-
-  h1, h2, h3 {
-    font-family: var(--font-display);
-    font-weight: 800;
-    line-height: 0.92;
-    letter-spacing: -0.01em;
-    text-wrap: balance;
-    text-transform: uppercase;
+  body::after {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 1;
+    background: radial-gradient(ellipse at 50% 0%, transparent 40%, rgba(30,20,10,0.08) 100%);
   }
-  p { max-width: 60ch; }
-  a { color: var(--wine); text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
-  a:hover { color: var(--wine-deep); }
 
-  /* ─── HEADER ─────────────────────────────────────────── */
+  main, header, footer, section { position: relative; z-index: 2; }
 
-  .top-strip {
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: var(--tap); color: var(--paper); }
+
+  /* stamp bar */
+  .stampbar {
     background: var(--ink);
-    color: var(--paper);
-    padding: 0.55rem clamp(1rem, 4vw, 3rem);
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-  .top-strip a { color: var(--paper); text-decoration: none; }
-  .top-strip a:hover { color: var(--mustard); }
-  .top-strip span::before {
-    content: "✦";
-    color: var(--mustard);
-    margin-right: 0.7em;
-  }
-
-  .nav {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    padding: 1.6rem clamp(1rem, 4vw, 3rem);
-    gap: 2rem;
-    flex-wrap: wrap;
-    border-bottom: 1px solid color-mix(in oklab, var(--ink) 20%, transparent);
-  }
-  .brand {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(1.6rem, 2vw + 0.9rem, 2.4rem);
-    letter-spacing: -0.005em;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--ink);
-    line-height: 0.9;
-  }
-  .brand em {
-    display: block;
-    font-family: var(--font-body);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 0.42em;
-    color: var(--ink-soft);
-    text-transform: none;
-    letter-spacing: 0;
-    margin-top: 0.35em;
-  }
-  .nav-links {
-    display: flex;
-    gap: clamp(1rem, 2vw, 2rem);
-    list-style: none;
-    padding: 0;
-    flex-wrap: wrap;
-  }
-  .nav-links a {
-    font-family: var(--font-display);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 1.05rem;
-    color: var(--ink);
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 0.25em;
-  }
-  .nav-links a::after {
-    content: "";
-    position: absolute; left: 0; bottom: 0;
-    width: 100%; height: 2px;
-    background: var(--wine);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.35s cubic-bezier(.3,.7,.3,1);
-  }
-  .nav-links a:hover::after { transform: scaleX(1); }
-
-  /* ─── HERO ───────────────────────────────────────────── */
-
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: clamp(2.5rem, 5vw, 5rem) clamp(1rem, 4vw, 3rem) clamp(3rem, 6vw, 6rem);
-    align-items: end;
-  }
-  @media (min-width: 56rem) {
-    .hero { grid-template-columns: 1.6fr 1fr; gap: 4rem; }
-  }
-  .hero__eyebrow {
-    font-family: var(--font-display);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 0.85rem;
-    color: var(--wine);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .hero__eyebrow::before {
-    content: "";
-    width: 2.5rem; height: 2px;
-    background: var(--wine);
-  }
-  .hero__title {
-    font-size: clamp(3rem, 11vw + 0.5rem, 9.5rem);
-    letter-spacing: -0.025em;
-  }
-  .hero__title em {
-    font-family: var(--font-body);
-    font-style: italic;
-    font-weight: 400;
-    text-transform: none;
-    color: var(--wine);
-    font-size: 0.78em;
-    letter-spacing: -0.005em;
-    display: block;
-    margin-top: 0.15em;
-  }
-  .hero__meta {
-    display: grid;
-    gap: 1.6rem;
-    align-content: end;
-    padding-bottom: 0.4em;
-  }
-  .hero__label {
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
-    font-weight: 500;
-    color: var(--ink-soft);
-    margin-bottom: 0.2rem;
-  }
-  .phone-link {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(1.7rem, 3.2vw + 0.5rem, 2.6rem);
-    color: var(--ink);
-    text-decoration: none;
-    letter-spacing: -0.005em;
-    display: inline-block;
-    line-height: 1;
-  }
-  .phone-link:hover { color: var(--wine); }
-  .addr-block {
-    font-family: var(--font-display);
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 1.1rem;
-    letter-spacing: 0.05em;
-    line-height: 1.25;
-    color: var(--ink);
-  }
-  .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    background: var(--mustard);
-    color: var(--ink);
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 0.95rem;
-    text-transform: uppercase;
+    color: var(--oat);
+    font-family: var(--display);
     letter-spacing: 0.14em;
-    padding: 0.45em 1em;
-    border-radius: 999px;
-    width: max-content;
-  }
-  .pill::before {
-    content: "";
-    width: 0.55em; height: 0.55em;
-    background: var(--ink);
-    border-radius: 50%;
-  }
-
-  /* ─── MARQUEE ────────────────────────────────────────── */
-
-  .marquee {
-    background: var(--wine);
-    color: var(--paper);
-    overflow: hidden;
-    border-top: 1px solid color-mix(in oklab, var(--ink) 30%, transparent);
-    border-bottom: 1px solid color-mix(in oklab, var(--ink) 30%, transparent);
-    --speed: 40s;
-  }
-  .marquee__track {
-    display: inline-flex;
-    gap: 3rem;
-    white-space: nowrap;
-    padding: 0.55em 0;
-    animation: scroll var(--speed) linear infinite;
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: clamp(1.4rem, 2.4vw + 0.6rem, 2.2rem);
-    width: max-content;
-  }
-  .marquee__item { display: inline-flex; align-items: center; }
-  .marquee__item::before {
-    content: "✦";
-    margin: 0 1.5rem 0 0;
-    color: var(--mustard);
-    font-size: 0.7em;
-  }
-  @keyframes scroll {
-    to { transform: translateX(-50%); }
-  }
-
-  /* ─── SECTIONS ───────────────────────────────────────── */
-
-  section {
-    padding: clamp(3.5rem, 7vw, 7rem) clamp(1rem, 4vw, 3rem);
-  }
-  .container { max-width: 76rem; margin: 0 auto; }
-  .narrow { max-width: 56rem; margin: 0 auto; }
-  .slab-wine { background: var(--wine); color: var(--paper); }
-  .slab-wine h1, .slab-wine h2, .slab-wine h3,
-  .slab-wine .section__eyebrow { color: var(--paper); }
-  .slab-wine .section__eyebrow::before,
-  .slab-ink .section__eyebrow::before { background: var(--mustard); }
-  .slab-wine a { color: var(--mustard); }
-  .slab-wine a:hover { color: var(--paper); }
-  .slab-ink { background: var(--ink); color: var(--paper); }
-  .slab-ink h2, .slab-ink h3,
-  .slab-ink .section__eyebrow { color: var(--paper); }
-  .slab-ink .section__eyebrow { color: var(--mustard); }
-  .slab-light { background: var(--paper-light); }
-
-  .section__eyebrow {
-    font-family: var(--font-display);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 0.85rem;
-    color: var(--wine);
-    margin-bottom: 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-  .section__eyebrow::before {
-    content: "";
-    width: 2.5rem; height: 2px;
-    background: var(--wine);
-  }
-
-  .section__title {
-    font-size: clamp(2.2rem, 5vw + 0.5rem, 5rem);
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.015em;
-  }
-  .section__lede {
-    font-size: clamp(1.2rem, 1vw + 0.9rem, 1.5rem);
-    line-height: 1.45;
-    font-style: italic;
-    color: var(--ink-soft);
-    margin-bottom: 2rem;
-    max-width: 50ch;
-  }
-  .slab-wine .section__lede,
-  .slab-ink .section__lede { color: color-mix(in oklab, var(--paper) 80%, transparent); }
-
-  /* ─── SIGNATURE DISHES ───────────────────────────────── */
-
-  .signatures {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-top: clamp(2rem, 4vw, 3rem);
-    border-top: 1px solid currentColor;
-  }
-  @media (min-width: 56rem) {
-    .signatures { grid-template-columns: repeat(3, 1fr); }
-  }
-  .signature {
-    padding: clamp(1.6rem, 2.5vw, 2.5rem) clamp(1rem, 2vw, 2rem);
-    border-bottom: 1px solid currentColor;
-    display: grid;
-    grid-template-rows: auto auto 1fr auto;
-    gap: 0.9rem;
-    transition: background 0.4s ease;
-    min-height: 22rem;
-  }
-  @media (min-width: 56rem) {
-    .signature { border-bottom: none; border-right: 1px solid currentColor; }
-    .signature:last-child { border-right: none; }
-  }
-  .signature__num {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 0.9rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-  }
-  .signature__name {
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: clamp(1.7rem, 2.5vw + 0.4rem, 2.4rem);
-    line-height: 0.95;
-    letter-spacing: -0.005em;
-  }
-  .signature__desc {
-    font-style: italic;
-    font-size: 1rem;
-    line-height: 1.5;
-    align-self: start;
-  }
-  .signature__foot {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-    border-top: 1px dashed color-mix(in oklab, currentColor 35%, transparent);
-    padding-top: 1rem;
-  }
-  .signature__tag {
-    font-family: var(--font-display);
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 0.78rem;
-    letter-spacing: 0.18em;
-    opacity: 0.75;
-  }
-  .signature__price {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.6rem;
-    letter-spacing: 0.03em;
-  }
-  .signature:hover { background: color-mix(in oklab, currentColor 5%, transparent); }
-
-  /* ─── CTA STRIP ──────────────────────────────────────── */
-
-  .cta-strip {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: 1fr;
-    align-items: center;
-  }
-  @media (min-width: 56rem) {
-    .cta-strip { grid-template-columns: 2fr 1fr; }
-  }
-  .cta-strip__copy {
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: clamp(1.8rem, 3.5vw + 0.5rem, 3.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.01em;
-  }
-  .cta-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-  .cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7em;
-    background: var(--wine);
-    color: var(--paper);
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    text-decoration: none;
-    padding: 1.1em 1.6em;
-    font-size: 1.05rem;
-    transition: background 0.3s ease, transform 0.3s ease, color 0.3s;
-  }
-  .cta:hover { background: var(--wine-deep); transform: translateY(-2px); color: var(--paper); }
-  .cta::after { content: "→"; transition: transform 0.3s; }
-  .cta:hover::after { transform: translateX(0.3em); }
-  .cta--ghost {
-    background: transparent;
-    color: var(--ink);
-    border: 2px solid var(--ink);
-  }
-  .cta--ghost:hover { background: var(--ink); color: var(--paper); }
-  .slab-wine .cta--ghost { color: var(--paper); border-color: var(--paper); }
-  .slab-wine .cta--ghost:hover { background: var(--paper); color: var(--wine); }
-  .cta--mustard { background: var(--mustard); color: var(--ink); }
-  .cta--mustard:hover { background: #c0862e; color: var(--ink); }
-
-  /* ─── ABOUT ──────────────────────────────────────────── */
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(2rem, 4vw, 4rem);
-    align-items: start;
-  }
-  @media (min-width: 56rem) {
-    .about-grid { grid-template-columns: 1.2fr 1fr; }
-  }
-  .about-grid p {
-    font-size: 1.1rem;
-    line-height: 1.65;
-    margin-bottom: 1.2rem;
-  }
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1px;
-    background: var(--ink);
-    border: 1px solid var(--ink);
-  }
-  .stat {
-    background: var(--paper);
-    padding: 1.5rem 1.2rem;
-    display: grid;
-    gap: 0.4rem;
-  }
-  .stat__num {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(2.2rem, 4vw + 0.5rem, 3.5rem);
-    line-height: 0.9;
-    color: var(--wine);
-    letter-spacing: -0.01em;
-  }
-  .stat__label {
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-    color: var(--ink-soft);
-    font-weight: 500;
-  }
-
-  /* ─── MENU BROADSHEET ────────────────────────────────── */
-
-  .menu-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(2.5rem, 4vw, 4rem);
-    margin-top: clamp(2rem, 4vw, 3rem);
-  }
-  @media (min-width: 50rem) {
-    .menu-grid { grid-template-columns: 1fr 1fr; }
-  }
-  .menu-section { display: grid; gap: 0.6rem; align-content: start; }
-  .menu-section__head {
-    border-bottom: 2px solid currentColor;
-    padding-bottom: 0.7rem;
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-  .menu-section__title {
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: clamp(1.7rem, 2.5vw + 0.4rem, 2.4rem);
-    letter-spacing: -0.005em;
-    line-height: 1;
-  }
-  .menu-section__note {
-    font-style: italic;
-    font-size: 0.85rem;
-    color: color-mix(in oklab, currentColor 70%, transparent);
-  }
-  .menu-item {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: baseline;
-    column-gap: 1rem;
-    padding: 0.6rem 0;
-    border-bottom: 1px dotted color-mix(in oklab, currentColor 35%, transparent);
-  }
-  .menu-item:last-child { border-bottom: none; }
-  .menu-item__name {
-    font-family: var(--font-display);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    font-size: 1.12rem;
-  }
-  .menu-item__desc {
-    grid-column: 1 / 2;
-    font-style: italic;
-    font-size: 0.92rem;
-    color: color-mix(in oklab, currentColor 75%, transparent);
-    margin-top: 0.15rem;
-    line-height: 1.4;
-    max-width: 38ch;
-  }
-  .menu-item__price {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.15rem;
-    letter-spacing: 0.04em;
-    color: var(--mustard);
-    white-space: nowrap;
-  }
-  .slab-wine .menu-item__price,
-  .slab-ink .menu-item__price { color: var(--mustard); }
-  .menu-foot {
-    margin-top: clamp(2.5rem, 4vw, 4rem);
-    padding-top: 2rem;
-    border-top: 1px solid currentColor;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-    align-items: center;
-  }
-  @media (min-width: 56rem) {
-    .menu-foot { grid-template-columns: 1fr auto; }
-  }
-  .menu-foot__note {
-    font-style: italic;
-    font-size: 1.05rem;
-    max-width: 50ch;
-  }
-
-  /* ─── CONTACT ─────────────────────────────────────────── */
-
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(2.5rem, 4vw, 4rem);
-    align-items: start;
-  }
-  @media (min-width: 56rem) {
-    .contact-grid { grid-template-columns: 1fr 1.15fr; }
-  }
-  .contact-block { display: grid; gap: 2rem; align-content: start; }
-  .contact-row {
-    display: grid;
-    gap: 0.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid color-mix(in oklab, var(--ink) 20%, transparent);
-  }
-  .contact-row__label {
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    font-size: 0.8rem;
-    color: var(--ink-soft);
-    font-weight: 500;
-  }
-  .contact-row__value,
-  .contact-row a {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: clamp(1.4rem, 2.5vw + 0.2rem, 2.1rem);
-    letter-spacing: -0.005em;
-    line-height: 1.05;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .contact-row a:hover { color: var(--wine); }
-  .contact-row__hint {
-    font-style: italic;
-    font-size: 0.92rem;
-    color: var(--ink-soft);
-    margin-top: 0.3rem;
-  }
-  .map-frame {
-    border: 4px solid var(--ink);
-    background: var(--paper-light);
-    overflow: hidden;
-  }
-  .map {
-    border: 0;
-    width: 100%;
-    aspect-ratio: 4 / 5;
-    display: block;
-    filter: saturate(0.85) contrast(1.05);
-  }
-
-  /* ─── GALLERY PLACEHOLDER ────────────────────────────── */
-
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-    gap: 1px;
-    margin-top: 2rem;
-    background: var(--ink);
-    border: 1px solid var(--ink);
-  }
-  .gallery-card {
-    aspect-ratio: 4 / 5;
-    background: color-mix(in oklab, var(--wine) 12%, var(--paper-light));
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 1.2rem;
-    position: relative;
-    overflow: hidden;
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--wine);
-    line-height: 1.2;
-  }
-  .gallery-card:nth-child(3n+2) {
-    background: color-mix(in oklab, var(--mustard) 22%, var(--paper-light));
-    color: var(--ink);
-  }
-  .gallery-card:nth-child(3n) {
-    background: var(--wine);
-    color: var(--paper);
-  }
-  .gallery-card:nth-child(5n+4) {
-    background: var(--ink);
-    color: var(--mustard);
-  }
-  .gallery-card::after {
-    content: "Coming soon";
-    position: absolute;
-    inset: auto auto 0.9rem 1rem;
-    font-style: italic;
-    font-family: var(--font-body);
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: 0;
-    font-size: 0.75rem;
-    opacity: 0.7;
-  }
-  .gallery-note {
-    background: var(--paper);
-    padding: 1.4rem 1.6rem;
-    border-left: 4px solid var(--mustard);
-    font-style: italic;
-    margin-top: 2.5rem;
-    font-size: 1.05rem;
-    max-width: 56rem;
-  }
-
-  /* ─── FOOTER ─────────────────────────────────────────── */
-
-  footer {
-    background: var(--ink);
-    color: var(--paper);
-    padding: clamp(3rem, 5vw, 5rem) clamp(1rem, 4vw, 3rem) 2rem;
-    position: relative;
-    z-index: 2;
-  }
-  .footer__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    max-width: 76rem;
-    margin: 0 auto;
-  }
-  @media (min-width: 50rem) {
-    .footer__grid { grid-template-columns: 1.4fr 1fr 1fr; }
-  }
-  .footer__brand {
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    font-size: clamp(2.2rem, 4vw + 0.4rem, 3.6rem);
-    line-height: 0.92;
-    margin-bottom: 1rem;
-    color: var(--paper);
-    letter-spacing: -0.01em;
-  }
-  .footer__brand em {
-    font-family: var(--font-body);
-    font-style: italic;
-    font-weight: 400;
-    text-transform: none;
-    color: var(--mustard);
-    font-size: 0.32em;
-    display: block;
-    letter-spacing: 0;
-    margin-top: 0.55em;
-  }
-  .footer__label {
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 0.22em;
-    font-size: 0.78rem;
-    color: var(--mustard);
-    margin-bottom: 0.7rem;
-    font-weight: 500;
-  }
-  .footer p, .footer address {
-    font-style: normal;
-    font-size: 1rem;
-    line-height: 1.55;
-    color: color-mix(in oklab, var(--paper) 90%, transparent);
-  }
-  .footer a {
-    color: var(--paper);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-    text-decoration-thickness: 1px;
-  }
-  .footer a:hover { color: var(--mustard); }
-  .footer__legal {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid color-mix(in oklab, var(--paper) 18%, transparent);
-    font-size: 0.85rem;
-    color: color-mix(in oklab, var(--paper) 70%, transparent);
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    max-width: 76rem;
-    margin-left: auto; margin-right: auto;
-    font-family: var(--font-display);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-  }
-
-  /* ─── STICKY PILL ────────────────────────────────────── */
-
-  .sticky-pill {
-    position: fixed;
-    bottom: 1.4rem;
-    right: 1.4rem;
-    z-index: 50;
-    background: var(--ink);
-    color: var(--paper);
-    font-family: var(--font-display);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    padding: 0.7em 1.1em;
-    font-size: 0.85rem;
-    text-decoration: none;
-    display: inline-flex;
-    gap: 0.6em;
-    align-items: center;
-    box-shadow: 0 10px 28px -10px rgba(0,0,0,0.55);
-    transition: background 0.3s, transform 0.3s;
-  }
-  .sticky-pill::before {
-    content: "";
-    width: 0.55em; height: 0.55em;
-    background: var(--mustard);
-    border-radius: 50%;
-    animation: pulse 2.2s ease-in-out infinite;
+    font-size: 0.82rem;
+    padding: 0.55rem var(--gutter);
+    display: flex; gap: 1.4rem; justify-content: space-between; align-items: center;
+    border-bottom: 2px solid var(--tap);
+  }
+  .stampbar a { color: var(--paper); border-bottom: 1px dashed transparent; transition: border-color .2s; }
+  .stampbar a:hover { border-bottom-color: var(--tap); }
+  .stampbar__right { display: flex; gap: 1.2rem; }
+  .stampbar__open { color: var(--tap); }
+  .stampbar__open::before {
+    content: ""; display: inline-block; width: 7px; height: 7px;
+    border-radius: 999px; background: var(--tap);
+    margin-right: 0.4rem; vertical-align: 1px;
+    box-shadow: 0 0 0 0 var(--tap);
+    animation: pulse 2.4s ease-out infinite;
   }
   @keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50%      { transform: scale(1.3); opacity: 0.65; }
-  }
-  .sticky-pill:hover { background: var(--wine); transform: translateY(-2px); color: var(--paper); }
-  @media (max-width: 40rem) {
-    .sticky-pill { right: 1rem; bottom: 1rem; font-size: 0.78rem; padding: 0.6em 0.9em; }
+    0%   { box-shadow: 0 0 0 0 rgba(199,91,18,0.6); }
+    70%  { box-shadow: 0 0 0 8px rgba(199,91,18,0); }
+    100% { box-shadow: 0 0 0 0 rgba(199,91,18,0); }
   }
 
-  /* ─── SCROLL REVEAL ──────────────────────────────────── */
+  /* masthead */
+  .masthead {
+    padding: clamp(1.4rem, 3vw, 2.6rem) var(--gutter) clamp(2rem, 4vw, 3.2rem);
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+  .masthead__nav {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--display); letter-spacing: 0.12em; font-size: 0.95rem;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.9rem;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+  .masthead__brand-tag {
+    color: var(--tap);
+    font-weight: 700;
+  }
+  .masthead__nav ul {
+    display: flex; gap: 1.4rem; list-style: none;
+    flex-wrap: wrap;
+  }
+  .masthead__nav a {
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: border-color .25s, color .25s;
+  }
+  .masthead__nav a:hover { border-bottom-color: var(--tap); color: var(--tap-deep); }
 
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: rise both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 28%;
+  .lockup {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1rem, 2.5vw, 2rem);
+    align-items: end;
+  }
+  @media (min-width: 760px) {
+    .lockup { grid-template-columns: 1.4fr 1fr; }
+  }
+  .lockup__title {
+    font-family: var(--display);
+    line-height: 0.78;
+    letter-spacing: -0.005em;
+    text-wrap: balance;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .lockup__title .g {
+    display: block;
+    font-size: clamp(7.5rem, 23vw, 19rem);
+    line-height: 0.78;
+    margin-left: -0.04em;
+  }
+  .lockup__title .gourmet {
+    display: block;
+    font-size: clamp(2.5rem, 7.5vw, 6rem);
+    color: var(--tap);
+    line-height: 0.9;
+    margin-top: -0.15em;
+  }
+  .lockup__title .burger {
+    display: block;
+    font-size: clamp(2.5rem, 7.5vw, 6rem);
+    line-height: 0.9;
+  }
+  .lockup__side {
+    border-left: 2px solid var(--rule);
+    padding: 0.3rem 0 0.6rem 1.2rem;
+  }
+  .lockup__side p.tag {
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 2.2vw, 2rem);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.9rem;
+  }
+  .lockup__side p.tag em {
+    font-style: normal;
+    color: var(--tap);
+  }
+  .lockup__side .caption {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin-bottom: 1.2rem;
+    max-width: 26ch;
+  }
+  .lockup__side .ctas {
+    display: flex; flex-wrap: wrap; gap: 0.55rem;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    font-family: var(--display);
+    letter-spacing: 0.08em;
+    padding: 0.7rem 1rem;
+    border: 2px solid var(--ink);
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 1rem;
+    transition: background .2s, color .2s, transform .15s;
+  }
+  .btn:hover { background: var(--tap); border-color: var(--tap); transform: translateY(-1px); }
+  .btn--ghost { background: transparent; color: var(--ink); }
+  .btn--ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  /* marquee */
+  .marquee {
+    background: var(--tap);
+    color: var(--paper);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    overflow: hidden;
+    padding: 0.7rem 0;
+    font-family: var(--display);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    letter-spacing: 0.1em;
+  }
+  .marquee__track {
+    display: inline-flex; gap: 2.4rem; white-space: nowrap;
+    animation: scroll 42s linear infinite;
+    will-change: transform;
+  }
+  .marquee__track > span { display: inline-flex; align-items: center; gap: 2.4rem; }
+  .marquee__track > span::after {
+    content: "★";
+    color: var(--ink);
+    font-size: 1.1em;
+  }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track { animation: none; }
+  }
+
+  /* content frame */
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .section-title {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+    text-wrap: balance;
+    margin-bottom: 0.4rem;
+  }
+  .section-title em { font-style: normal; color: var(--tap); }
+  .section-kicker {
+    font-family: var(--display);
+    letter-spacing: 0.18em;
+    font-size: 0.85rem;
+    color: var(--tap);
+    margin-bottom: 0.85rem;
+  }
+  .section-lede {
+    max-width: 50ch;
+    margin-bottom: 2.4rem;
+    color: var(--ink-soft);
+  }
+
+  /* signature six (broadsheet menu) */
+  .signatures {
+    padding: clamp(3rem, 6vw, 5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .menu-list {
+    list-style: none;
+    border-top: 2px solid var(--ink);
+  }
+  .menu-list li {
+    border-bottom: 1px solid var(--rule);
+    padding: 1.3rem 0.2rem;
+    display: grid;
+    grid-template-columns: 2.2rem 1fr;
+    column-gap: 1rem;
+    row-gap: 0.3rem;
+    align-items: baseline;
+  }
+  @media (min-width: 640px) {
+    .menu-list li {
+      grid-template-columns: 3rem 1fr auto;
     }
   }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(2.2rem); }
-    to   { opacity: 1; transform: translateY(0); }
+  .menu-list .num {
+    font-family: var(--display);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    color: var(--tap);
+    line-height: 1;
+    grid-row: span 2;
+    align-self: start;
+  }
+  .menu-list .name {
+    font-family: var(--display);
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    line-height: 1;
+    letter-spacing: 0.005em;
+  }
+  .menu-list .price {
+    font-family: var(--display);
+    font-size: 1.4rem;
+    color: var(--ink);
+    grid-column: 2;
+    justify-self: start;
+  }
+  @media (min-width: 640px) {
+    .menu-list .price {
+      grid-column: 3;
+      justify-self: end;
+      align-self: baseline;
+    }
+  }
+  .menu-list .desc {
+    grid-column: 2;
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    max-width: 60ch;
+  }
+  .menu-list .badge {
+    display: inline-block;
+    font-family: var(--display);
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    color: var(--paper);
+    background: var(--tap-deep);
+    padding: 0.15rem 0.45rem;
+    margin-left: 0.5rem;
+    vertical-align: 0.18em;
+  }
+
+  /* scroll-reveal */
+  @supports (animation-timeline: view()) {
+    .menu-list li {
+      animation: rise both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 25%;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(1.4rem); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
   }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    html { scroll-behavior: auto; }
+    .menu-list li { animation: none !important; }
   }
 
-  /* ─── UTIL ───────────────────────────────────────────── */
-
-  .sr-only {
-    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
-    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  .menu-foot {
+    margin-top: 1.4rem;
+    color: var(--ink-soft);
+    font-size: 0.92rem;
+    font-style: italic;
   }
-  .divider-rule {
+  .menu-foot strong { color: var(--ink); font-style: normal; }
+
+  /* beyond burgers */
+  .beyond {
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(3rem, 6vw, 5rem) 0;
+    margin-top: clamp(2rem, 4vw, 3rem);
+    border-top: 2px solid var(--tap);
+    border-bottom: 2px solid var(--tap);
+  }
+  .beyond .section-title { color: var(--paper); }
+  .beyond .section-kicker { color: var(--oat); }
+  .beyond .section-lede { color: var(--oat); }
+  .grid-3 {
+    display: grid; gap: 1.4rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    margin-top: 1.6rem;
+  }
+  .card {
+    border: 1px solid rgba(233, 213, 161, 0.25);
+    padding: 1.4rem 1.3rem 1.6rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent 60%);
+  }
+  .card h3 {
+    font-family: var(--display);
+    font-size: 1.9rem;
+    line-height: 1;
+    margin-bottom: 0.55rem;
+    color: var(--oat);
+    letter-spacing: 0.01em;
+  }
+  .card p { color: var(--paper); opacity: 0.86; font-size: 0.96rem; }
+  .card .price-from {
     display: block;
-    width: 100%;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.2;
-    margin: clamp(2rem, 4vw, 3rem) 0;
+    margin-top: 0.9rem;
+    font-family: var(--display);
+    letter-spacing: 0.12em;
+    font-size: 0.82rem;
+    color: var(--tap);
+  }
+
+  /* bench (visit) */
+  .bench {
+    padding: clamp(3.4rem, 6vw, 5.5rem) 0 clamp(2rem, 4vw, 3.5rem);
+  }
+  .bench__grid {
+    display: grid; gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 820px) {
+    .bench__grid { grid-template-columns: 1.1fr 1fr; gap: 3rem; }
+  }
+  .bench__col h2 { margin-bottom: 1rem; }
+  .bench__phone {
+    display: block;
+    font-family: var(--display);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    line-height: 0.9;
+    margin: 0.6rem 0 0.4rem;
+    letter-spacing: 0.005em;
+    color: var(--ink);
+  }
+  .bench__phone:hover { color: var(--tap); }
+  .bench__address {
+    font-style: normal;
+    line-height: 1.55;
+    margin-bottom: 1rem;
+  }
+  .bench__address strong { display: block; font-family: var(--display); font-size: 1.25rem; letter-spacing: 0.04em; }
+  .bench__notes { margin-top: 1rem; font-size: 0.94rem; color: var(--ink-soft); list-style: none; }
+  .bench__notes li { padding-left: 1.4rem; position: relative; margin-bottom: 0.35rem; }
+  .bench__notes li::before {
+    content: "";
+    position: absolute; left: 0; top: 0.55em;
+    width: 0.7rem; height: 2px; background: var(--tap);
+  }
+
+  .map-card {
+    background: var(--oat);
+    border: 2px solid var(--ink);
+    padding: 1.6rem 1.5rem;
+    position: relative;
+  }
+  .map-card::before {
+    content: "";
+    position: absolute; top: -2px; left: -2px;
+    width: 1.4rem; height: 1.4rem;
+    background: var(--tap);
+    border-right: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+  }
+  .map-card h3 {
+    font-family: var(--display);
+    font-size: 1.7rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+  .map-card p { font-size: 0.95rem; margin-bottom: 0.9rem; }
+  .map-card .pin {
+    border: 1.5px dashed var(--ink);
+    padding: 1rem;
+    margin-top: 1rem;
+    background: var(--paper);
+    font-family: var(--body);
+  }
+  .map-card .pin strong { font-family: var(--display); font-size: 1.05rem; letter-spacing: 0.1em; display: block; margin-bottom: 0.2rem; }
+  .map-card a.directions {
+    font-family: var(--display);
+    letter-spacing: 0.1em;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1px;
+    font-size: 0.95rem;
+  }
+  .map-card a.directions:hover { color: var(--tap-deep); border-color: var(--tap-deep); }
+
+  /* delivery row */
+  .deliver {
+    margin-top: 2.4rem;
+    padding: 1.4rem var(--gutter);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+    font-family: var(--display);
+    letter-spacing: 0.16em;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    background: var(--paper-edge);
+  }
+  .deliver span { color: var(--ink); margin: 0 0.5rem; }
+
+  /* footer letterhead */
+  footer {
+    background: var(--ink);
+    color: var(--oat);
+    padding: clamp(2.6rem, 5vw, 4rem) var(--gutter) 1.6rem;
+    border-top: 4px solid var(--tap);
+  }
+  .letterhead {
+    max-width: var(--maxw); margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+  @media (min-width: 720px) {
+    .letterhead { grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; }
+  }
+  .letterhead__title {
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 0.9;
+    color: var(--paper);
+  }
+  .letterhead__title span { color: var(--tap); }
+  .letterhead p, .letterhead a { color: var(--oat); }
+  .letterhead a:hover { color: var(--paper); }
+  .letterhead h4 {
+    font-family: var(--display);
+    letter-spacing: 0.18em;
+    font-size: 0.8rem;
+    color: var(--tap);
+    margin-bottom: 0.7rem;
+  }
+  .letterhead ul { list-style: none; }
+  .letterhead ul li { padding: 0.18rem 0; font-size: 0.94rem; }
+  .footer-rule {
+    max-width: var(--maxw); margin: 2rem auto 0;
+    border-top: 1px solid rgba(233,213,161,0.18);
+    padding-top: 1rem;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.8rem;
+    font-family: var(--display);
+    letter-spacing: 0.16em;
+    font-size: 0.75rem;
+    color: rgba(233,213,161,0.7);
+  }
+
+  /* focus visible */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--tap);
+    outline-offset: 3px;
   }
 </style>
 </head>
 <body>
 
-<a href="tel:01582965595" class="sticky-pill" aria-label="Call G's Gourmet Burgers">
-  Call · 01582 965595
-</a>
-
-<header>
-  <div class="top-strip">
-    <span>13 Wellington Street · Luton · LU1 2QH</span>
-    <a href="tel:01582965595">01582 965595</a>
+<div class="stampbar">
+  <span>Wellington Street &middot; Luton &middot; LU1 2QH</span>
+  <div class="stampbar__right">
+    <span class="stampbar__open">Made-to-order &middot; Halal</span>
+    <a href="tel:+441582965595">01582 965595</a>
   </div>
-  <nav class="nav" aria-label="Primary">
-    <a class="brand" href="#home">
-      G's Gourmet Burgers
-      <em>Personalised burgers, steaks &amp; much more</em>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
+</div>
+
+<header class="masthead">
+  <nav class="masthead__nav" aria-label="Primary">
+    <span class="masthead__brand-tag">EST. WELLINGTON ST &middot; LUTON</span>
+    <ul>
+      <li><a href="#signatures">Menu</a></li>
+      <li><a href="#beyond">Beyond</a></li>
+      <li><a href="#bench">Find Us</a></li>
+      <li><a href="tel:+441582965595">Call</a></li>
     </ul>
   </nav>
+
+  <div class="lockup">
+    <h1 class="lockup__title" aria-label="G's Gourmet Burger">
+      <span class="g">G&rsquo;s</span>
+      <span class="gourmet">Gourmet</span>
+      <span class="burger">Burger.</span>
+    </h1>
+    <div class="lockup__side">
+      <p class="tag">Personalised burgers, <em>steaks</em> &amp; much more.</p>
+      <p class="caption">Char-grilled to order on Wellington Street. Build your own or pick a house signature &mdash; six of them, each one cooked the way you ask.</p>
+      <div class="ctas">
+        <a class="btn" href="tel:+441582965595">Call &amp; Order</a>
+        <a class="btn btn--ghost" href="#signatures">See the Menu</a>
+      </div>
+    </div>
+  </div>
 </header>
 
-<main>
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Halal certified</span>
+    <span>Made to order</span>
+    <span>Char-grilled steaks</span>
+    <span>Thick milkshakes</span>
+    <span>Lamb chops</span>
+    <span>Takeaway &middot; Delivery &middot; Walk in</span>
+    <span>Wellington Street, Luton</span>
+    <span>Halal certified</span>
+    <span>Made to order</span>
+    <span>Char-grilled steaks</span>
+    <span>Thick milkshakes</span>
+    <span>Lamb chops</span>
+    <span>Takeaway &middot; Delivery &middot; Walk in</span>
+    <span>Wellington Street, Luton</span>
+  </div>
+</div>
 
-  <!-- ──────────────────── HERO ──────────────────── -->
-  <section id="home" class="hero" aria-labelledby="hero-title">
-    <div>
-      <span class="hero__eyebrow">Wellington Street · Luton · Est. on the corner</span>
-      <h1 class="hero__title" id="hero-title">
-        <span class="sr-only">G's Gourmet Burgers — </span>Personalised
-        burgers,<br>
-        steaks &amp;<br>
-        <em>much more.</em>
-      </h1>
-    </div>
-    <div class="hero__meta">
-      <div>
-        <div class="hero__label">Call to order</div>
-        <a class="phone-link" href="tel:01582965595">01582 965595</a>
-      </div>
-      <div>
-        <div class="hero__label">Find us</div>
-        <div class="addr-block">
-          13 Wellington Street<br>
-          Luton · LU1 2QH
-        </div>
-      </div>
-      <span class="pill">100% Halal</span>
-    </div>
-  </section>
+<section id="signatures" class="signatures">
+  <div class="wrap">
+    <p class="section-kicker">N&deg; 01 &mdash; The Signature Six</p>
+    <h2 class="section-title">Six burgers we&rsquo;d <em>put our name on</em>.</h2>
+    <p class="section-lede">These are the burgers we&rsquo;d put our name on. Want it different? Tell us &mdash; everything on this page is personalised. Full ingredients &amp; prices on the menu in shop.</p>
 
-  <!-- ──────────────────── MARQUEE ──────────────────── -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee__track">
-      <span class="marquee__item">Halal kitchen</span>
-      <span class="marquee__item">Hand-cut chips</span>
-      <span class="marquee__item">Build-your-own burger</span>
-      <span class="marquee__item">Sirloin &amp; ribeye</span>
-      <span class="marquee__item">Lamb chops</span>
-      <span class="marquee__item">Skewers</span>
-      <span class="marquee__item">Sweet potato fries</span>
-      <span class="marquee__item">Wraps</span>
-      <span class="marquee__item">Milkshakes</span>
-      <span class="marquee__item">Halal kitchen</span>
-      <span class="marquee__item">Hand-cut chips</span>
-      <span class="marquee__item">Build-your-own burger</span>
-      <span class="marquee__item">Sirloin &amp; ribeye</span>
-      <span class="marquee__item">Lamb chops</span>
-      <span class="marquee__item">Skewers</span>
-      <span class="marquee__item">Sweet potato fries</span>
-      <span class="marquee__item">Wraps</span>
-      <span class="marquee__item">Milkshakes</span>
+    <ol class="menu-list">
+      <li>
+        <span class="num">01</span>
+        <span class="name">The Rancher</span>
+        <span class="price">house signature</span>
+        <p class="desc">Our flagship beef burger. The one to order if you can&rsquo;t decide.</p>
+      </li>
+      <li>
+        <span class="num">02</span>
+        <span class="name">Volcano <span class="badge">spicy</span></span>
+        <span class="price">turn up the heat</span>
+        <p class="desc">For the heat-seekers. Spice forward, finished hot.</p>
+      </li>
+      <li>
+        <span class="num">03</span>
+        <span class="name">Philly</span>
+        <span class="price">steak &amp; cheese</span>
+        <p class="desc">Steak-and-cheese style. Classic combination, our way.</p>
+      </li>
+      <li>
+        <span class="num">04</span>
+        <span class="name">Mediterranean Chicken</span>
+        <span class="price">lighter</span>
+        <p class="desc">Grilled chicken with Mediterranean accents &mdash; brighter, herby, less heavy than the beef.</p>
+      </li>
+      <li>
+        <span class="num">05</span>
+        <span class="name">Beef-It-Up</span>
+        <span class="price">stack it up</span>
+        <p class="desc">Bigger patty, bigger build &mdash; for when one burger isn&rsquo;t enough.</p>
+      </li>
+      <li>
+        <span class="num">06</span>
+        <span class="name">G&rsquo;s Cheeseburger</span>
+        <span class="price">the classic</span>
+        <p class="desc">A clean classic. Burger, cheese, the way it should be. Don&rsquo;t mess with it.</p>
+      </li>
+    </ol>
+
+    <p class="menu-foot"><strong>Personalised.</strong> Swap the bun, add a patty, hold the salad, change the sauce &mdash; ask at the counter or on the phone.</p>
+  </div>
+</section>
+
+<section id="beyond" class="beyond">
+  <div class="wrap">
+    <p class="section-kicker">N&deg; 02 &mdash; Beyond burgers</p>
+    <h2 class="section-title">Steaks, <em>lamb chops</em>, chicken, milkshakes.</h2>
+    <p class="section-lede">It says &ldquo;burger&rdquo; over the door, but half the regulars come for the chops. Everything off the grill, everything halal.</p>
+
+    <div class="grid-3">
+      <article class="card">
+        <h3>Char-grilled steaks</h3>
+        <p>Cooked the way you want it &mdash; rare, medium, well. Served with gourmet chips or skinny fries.</p>
+        <span class="price-from">Steaks &middot; from the grill</span>
+      </article>
+      <article class="card">
+        <h3>Lamb chops</h3>
+        <p>Off the grill, the way they should be. The thing some regulars actually drive across Luton for.</p>
+        <span class="price-from">Lamb chops &middot; from &pound;6.95</span>
+      </article>
+      <article class="card">
+        <h3>Chicken &amp; wings</h3>
+        <p>Strips, wings, full platters. Pick your heat at the counter.</p>
+        <span class="price-from">Chicken strips &middot; from &pound;4.79</span>
+      </article>
+      <article class="card">
+        <h3>Gourmet sides</h3>
+        <p>Gourmet chips, skinny fries, onion rings. The chips are the chips. Regulars know.</p>
+        <span class="price-from">Gourmet chips &middot; &pound;2.50</span>
+      </article>
+      <article class="card">
+        <h3>Thick milkshakes</h3>
+        <p>Proper thick &mdash; ask what&rsquo;s on the board today.</p>
+        <span class="price-from">Milkshakes &middot; ask in shop</span>
+      </article>
+      <article class="card">
+        <h3>Platters</h3>
+        <p>For the table. Mixed grill, chicken, family platter. Easiest call for four-plus.</p>
+        <span class="price-from">Platters &middot; ask in shop</span>
+      </article>
     </div>
   </div>
+</section>
 
-  <!-- ──────────────────── SIGNATURES ──────────────────── -->
-  <section class="slab-light" aria-labelledby="sig-title">
-    <div class="container">
-      <span class="section__eyebrow">Signature plates</span>
-      <h2 class="section__title reveal" id="sig-title">Three reasons we<br>own Wellington Street.</h2>
-      <p class="section__lede reveal">Made to order. Cooked when you walk in. Every burger built around what you actually want — not what the menu printer locked us into.</p>
+<section id="bench" class="bench">
+  <div class="wrap">
+    <div class="bench__grid">
+      <div class="bench__col">
+        <p class="section-kicker">N&deg; 03 &mdash; Find the counter</p>
+        <h2 class="section-title">Pick up the phone or <em>walk in</em>.</h2>
+        <p class="section-lede">Quickest route is a call &mdash; we&rsquo;ll have it boxed by the time you get here.</p>
 
-      <div class="signatures">
-        <article class="signature reveal">
-          <div class="signature__num">№ 01</div>
-          <h3 class="signature__name">The Rancher</h3>
-          <p class="signature__desc">Our flagship beef stack. Seasoned patty, smoked cheese, crisp lettuce, ranch sauce we make in-house. The reason regulars come back on Friday nights.</p>
-          <div class="signature__foot">
-            <span class="signature__tag">Beef · Halal</span>
-            <span class="signature__price">House</span>
-          </div>
-        </article>
-        <article class="signature reveal">
-          <div class="signature__num">№ 02</div>
-          <h3 class="signature__name">Beef It Up</h3>
-          <p class="signature__desc">For the deeply hungry. Double patty, double cheese, layered the way it should be. Pair it with sweet potato fries and we won't tell anyone.</p>
-          <div class="signature__foot">
-            <span class="signature__tag">Beef · Double</span>
-            <span class="signature__price">House</span>
-          </div>
-        </article>
-        <article class="signature reveal">
-          <div class="signature__num">№ 03</div>
-          <h3 class="signature__name">Mediterranean Chicken</h3>
-          <p class="signature__desc">Marinated chicken breast, fresh salad, garlic mayo — lighter, herbier, the burger you order when you tell yourself you're being good.</p>
-          <div class="signature__foot">
-            <span class="signature__tag">Chicken · Halal</span>
-            <span class="signature__price">House</span>
-          </div>
-        </article>
+        <a class="bench__phone" href="tel:+441582965595">01582 965595</a>
+
+        <address class="bench__address">
+          <strong>G&rsquo;s Gourmet Burger</strong>
+          13 Wellington Street<br>
+          Luton, LU1 2QH<br>
+          Bedfordshire
+        </address>
+
+        <ul class="bench__notes">
+          <li>Halal certified &mdash; ask at the counter for sourcing</li>
+          <li>Customise any burger &mdash; bun, sauce, patty count, salad</li>
+          <li>Walk-in, takeaway, or delivery on Uber Eats, Deliveroo &amp; Just Eat</li>
+        </ul>
       </div>
+
+      <aside class="map-card" aria-label="Visit">
+        <h3>Wellington Street</h3>
+        <p>Off George Street, walking distance from the Mall and Luton station.</p>
+
+        <div class="pin">
+          <strong>The Pin</strong>
+          13 Wellington St,<br>
+          Luton LU1 2QH
+        </div>
+
+        <p style="margin-top:1.1rem;">
+          <a class="directions" href="https://www.google.com/maps/dir/?api=1&destination=G%27s+Gourmet+Burger+13+Wellington+Street+Luton+LU1+2QH">Open in Maps &rsaquo;</a>
+        </p>
+      </aside>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ──────────────────── ABOUT ──────────────────── -->
-  <section id="about" aria-labelledby="about-title">
-    <div class="container">
-      <div class="about-grid">
-        <div>
-          <span class="section__eyebrow">About G's</span>
-          <h2 class="section__title reveal" id="about-title">A neighbourhood<br>burger kitchen.<br>Not a chain.</h2>
-          <p class="reveal">G's Gourmet Burgers has been a fixture on the corner of Wellington Street since well before Luton's burger boom. We're independent. We're Halal. We're run by people who live here.</p>
-          <p class="reveal">Our promise is the one printed on our own wall: <strong>personalised burgers, steaks &amp; much more.</strong> Walk in, tell us what you want, watch us build it. Single, double, triple. Beef, chicken, lamb, veggie. Sweet potato fries or hand-cut chips. Skewers, platters, wraps if you're on the move. Milkshakes thick enough to need a spoon.</p>
-          <p class="reveal">No microwave reheats. No frozen patties from a multinational. Just a kitchen on Wellington Street, cooking each plate when the order lands — the way gourmet should mean something rather than just sit on a sign.</p>
-        </div>
-        <div class="about-stats reveal" aria-label="At a glance">
-          <div class="stat">
-            <span class="stat__num">100%</span>
-            <span class="stat__label">Halal kitchen</span>
-          </div>
-          <div class="stat">
-            <span class="stat__num">4.5★</span>
-            <span class="stat__label">Tripadvisor rating</span>
-          </div>
-          <div class="stat">
-            <span class="stat__num">17+</span>
-            <span class="stat__label">Menu categories</span>
-          </div>
-          <div class="stat">
-            <span class="stat__num">LU1</span>
-            <span class="stat__label">Wellington Street</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ──────────────────── MENU ──────────────────── -->
-  <section id="menu" class="slab-wine" aria-labelledby="menu-title">
-    <div class="container">
-      <span class="section__eyebrow">The menu</span>
-      <h2 class="section__title reveal" id="menu-title">Read it like<br>a broadsheet.<br>Order it like<br>a regular.</h2>
-      <p class="section__lede reveal">A working extract. Full pricing &amp; daily specials in the shop — call ahead for collection or check Uber Eats for delivery.</p>
-
-      <div class="menu-grid">
-
-        <div class="menu-section reveal">
-          <div class="menu-section__head">
-            <h3 class="menu-section__title">Starters</h3>
-            <span class="menu-section__note">Halal · made to order</span>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item__name">Chicken Wings</div>
-              <div class="menu-item__desc">Six pieces, marinated &amp; grilled. The way Luton expects them.</div>
-            </div>
-            <div class="menu-item__price">£4.79</div>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item__name">Chicken Strips</div>
-              <div class="menu-item__desc">Tender strips, lightly battered — a satisfying start.</div>
-            </div>
-            <div class="menu-item__price">£4.79</div>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item__name">Lamb Chops</div>
-              <div class="menu-item__desc">Tender, full of flavour, hard to share.</div>
-            </div>
-            <div class="menu-item__price">£6.95</div>
-          </div>
-        </div>
-
-        <div class="menu-section reveal">
-          <div class="menu-section__head">
-            <h3 class="menu-section__title">From the grill</h3>
-            <span class="menu-section__note">House signatures</span>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item__name">The Rancher</div>
-              <div class="menu-item__desc">Beef patty, smoked cheese, in-house ranch.</div>
-            </div>
-            <div class="menu-item__price">In shop</div>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item__name">Beef It Up</div>
-              <div class="menu-item__desc">Double patty, double cheese. The hungry person's order.</div>
-            </div>
-            <div class="menu-item__price">In shop</div>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item__name">Mediterranean Chicken</div>
-              <div class="menu-item__desc">Marinated breast, salad, garlic mayo — the lighter call.</div>
-            </div>
-            <div class="menu-item__price">In shop</div>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item__name">Build Your Own</div>
-              <div class="menu-item__desc">Pick patty, cheese, sauce, toppings — your burger, your call.</div>
-            </div>
-            <div class="menu-item__price">In shop</div>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item__name">Steaks &amp; Skewers</div>
-              <div class="menu-item__desc">Sirloin, ribeye, mixed skewers — cooked to your liking.</div>
-            </div>
-            <div class="menu-item__price">In shop</div>
-          </div>
-        </div>
-
-        <div class="menu-section reveal">
-          <div class="menu-section__head">
-            <h3 class="menu-section__title">Sides</h3>
-            <span class="menu-section__note">Hand-cut, never frozen</span>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Skinny Fries</div></div>
-            <div class="menu-item__price">£2.34</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Gourmet Chips</div></div>
-            <div class="menu-item__price">£2.50</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Rosemary Salted Chips</div></div>
-            <div class="menu-item__price">£2.80</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Masala Fries</div><div class="menu-item__desc">Aromatic Indian spices.</div></div>
-            <div class="menu-item__price">£2.76</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Sweet Potato Fries</div></div>
-            <div class="menu-item__price">£3.00</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Gourmet Onion Rings</div></div>
-            <div class="menu-item__price">£3.00</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Coleslaw</div></div>
-            <div class="menu-item__price">£3.00</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Greek Salad</div><div class="menu-item__desc">Tomatoes, cucumbers, feta.</div></div>
-            <div class="menu-item__price">£3.50</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Pilau Rice</div></div>
-            <div class="menu-item__price">£2.88</div>
-          </div>
-        </div>
-
-        <div class="menu-section reveal">
-          <div class="menu-section__head">
-            <h3 class="menu-section__title">Dips &amp; drinks</h3>
-            <span class="menu-section__note">Made on the bench</span>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Chipotle Mayonnaise</div><div class="menu-item__desc">Smoky, spicy.</div></div>
-            <div class="menu-item__price">£0.48</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Garlic Mayonnaise</div></div>
-            <div class="menu-item__price">£0.48</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Hot Chilli</div></div>
-            <div class="menu-item__price">£0.48</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Sweet Chilli</div></div>
-            <div class="menu-item__price">£0.48</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Milkshakes</div><div class="menu-item__desc">Thick. Spoon-required.</div></div>
-            <div class="menu-item__price">In shop</div>
-          </div>
-          <div class="menu-item">
-            <div><div class="menu-item__name">Cakes &amp; Ice Cream</div></div>
-            <div class="menu-item__price">In shop</div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="menu-foot reveal">
-        <p class="menu-foot__note">Wraps, kids' meals, platters, veggie burgers, build-your-own — all available in shop. Allergies or dietary requirements? Ring through before ordering and we'll talk you through what's on the grill.</p>
-        <div class="cta-row">
-          <a class="cta cta--mustard" href="tel:01582965595">Call to order</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ──────────────────── GALLERY ──────────────────── -->
-  <section id="gallery" aria-labelledby="gallery-title">
-    <div class="container">
-      <span class="section__eyebrow">Gallery</span>
-      <h2 class="section__title reveal" id="gallery-title">Photos from<br>the kitchen<br>landing soon.</h2>
-      <p class="section__lede reveal">We're swapping the placeholder tiles below for real shots — burgers off the grill, the Wellington Street counter, the lamb chops people keep messaging us about.</p>
-
-      <div class="gallery-grid" role="img" aria-label="Gallery placeholder — photography to follow">
-        <div class="gallery-card">The Rancher · off the grill</div>
-        <div class="gallery-card">Hand-cut chips</div>
-        <div class="gallery-card">Lamb chops</div>
-        <div class="gallery-card">Build-your-own line</div>
-        <div class="gallery-card">Sweet potato fries</div>
-        <div class="gallery-card">Wellington Street counter</div>
-        <div class="gallery-card">Milkshake bar</div>
-        <div class="gallery-card">Mediterranean chicken</div>
-      </div>
-
-      <p class="gallery-note reveal">
-        Got a photo of your G's order worth showing off? Tag us when our social handles go live, or drop a print in and we'll put it on the wall.
-      </p>
-    </div>
-  </section>
-
-  <!-- ──────────────────── CONTACT ──────────────────── -->
-  <section id="contact" class="slab-ink" aria-labelledby="contact-title">
-    <div class="container">
-      <span class="section__eyebrow">Contact</span>
-      <h2 class="section__title reveal" id="contact-title">Walk in.<br>Call ahead.<br>Either works.</h2>
-      <div class="contact-grid">
-        <div class="contact-block reveal">
-          <div class="contact-row">
-            <span class="contact-row__label">Phone</span>
-            <a class="contact-row__value" href="tel:01582965595">01582 965595</a>
-            <span class="contact-row__hint">Quickest way to put an order in for collection.</span>
-          </div>
-          <div class="contact-row">
-            <span class="contact-row__label">Address</span>
-            <address class="contact-row__value" style="font-style:normal">
-              13 Wellington Street<br>
-              Luton · LU1 2QH
-            </address>
-            <span class="contact-row__hint">Short walk from Luton town centre. Wellington Street parking on side roads.</span>
-          </div>
-          <div class="contact-row">
-            <span class="contact-row__label">Kitchen</span>
-            <span class="contact-row__value">Open daily for lunch &amp; dinner</span>
-            <span class="contact-row__hint">Hours vary by day — call ahead on busy weekends. Delivery via Uber Eats during service hours.</span>
-          </div>
-          <div class="contact-row" style="border-bottom:none">
-            <span class="contact-row__label">Kitchen type</span>
-            <span class="contact-row__value">100% Halal · Family-friendly</span>
-          </div>
-        </div>
-        <div class="map-frame reveal">
-          <iframe
-            class="map"
-            title="Map showing G's Gourmet Burgers at 13 Wellington Street, Luton LU1 2QH"
-            src="https://www.google.com/maps?q=13+Wellington+Street,+Luton+LU1+2QH&z=16&output=embed"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ──────────────────── CTA STRIP ──────────────────── -->
-  <section class="slab-light">
-    <div class="container">
-      <div class="cta-strip reveal">
-        <div class="cta-strip__copy">
-          Hungry now?<br>
-          The grill's <span style="color:var(--wine)">on.</span>
-        </div>
-        <div class="cta-row">
-          <a class="cta" href="tel:01582965595">Order by phone</a>
-          <a class="cta cta--ghost" href="#menu">Browse the menu</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-</main>
+<div class="deliver">
+  Also on <span>Uber Eats</span> &middot; <span>Deliveroo</span> &middot; <span>Just Eat</span>
+</div>
 
 <footer>
-  <div class="footer__grid">
+  <div class="letterhead">
     <div>
-      <div class="footer__brand">
-        G's Gourmet<br>Burgers
-        <em>13 Wellington St · Luton · LU1 2QH</em>
-      </div>
-      <p>Independent, Halal-certified burger kitchen on the Wellington Street corner. Personalised plates, hand-cut chips, &amp; the steaks regulars keep coming back for.</p>
+      <p class="letterhead__title">G&rsquo;s <span>Gourmet</span><br>Burger.</p>
+      <p style="margin-top:1rem; max-width: 32ch; font-size: 0.95rem;">Personalised burgers, char-grilled steaks &amp; lamb chops on Wellington Street, Luton.</p>
     </div>
     <div>
-      <div class="footer__label">Call &amp; collect</div>
-      <p><a href="tel:01582965595">01582 965595</a></p>
-      <div class="footer__label" style="margin-top:1.5rem">Find us</div>
-      <address style="font-style:normal">
-        13 Wellington Street<br>
-        Luton<br>
-        LU1 2QH<br>
-        Bedfordshire
-      </address>
+      <h4>The Counter</h4>
+      <ul>
+        <li>13 Wellington Street</li>
+        <li>Luton, LU1 2QH</li>
+        <li>Bedfordshire</li>
+        <li><a href="tel:+441582965595">01582 965595</a></li>
+      </ul>
     </div>
     <div>
-      <div class="footer__label">Browse</div>
-      <p style="line-height:2">
-        <a href="#home">Home</a><br>
-        <a href="#about">About</a><br>
-        <a href="#menu">Menu</a><br>
-        <a href="#gallery">Gallery</a><br>
-        <a href="#contact">Contact</a>
-      </p>
+      <h4>Order &amp; Follow</h4>
+      <ul>
+        <li><a href="https://www.facebook.com/GsGourmetBurgers/" rel="noopener">Facebook</a></li>
+        <li><a href="https://www.instagram.com/gsgourmetburgers/" rel="noopener">Instagram</a></li>
+        <li><a href="tel:+441582965595">Call to order</a></li>
+        <li>Halal &middot; Made-to-order</li>
+      </ul>
     </div>
   </div>
-  <div class="footer__legal">
-    <span>© G's Gourmet Burgers · Luton</span>
-    <span>Site by Binning.AI</span>
+  <div class="footer-rule">
+    <span>&copy; G&rsquo;s Gourmet Burger &middot; Luton</span>
+    <span>Char-grilled. Personalised. Local.</span>
   </div>
 </footer>
 
